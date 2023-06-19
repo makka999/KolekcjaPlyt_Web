@@ -1,0 +1,59 @@
+﻿@model IEnumerable<KolekcjaPlyt_Web.Models.Plytum>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Komentarz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RodzajPlyty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusPosiadania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdNabycieNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Komentarz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RodzajPlyty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusPosiadania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdNabycieNavigation.IdNabycie)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdPlyta">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdPlyta">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdPlyta">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
