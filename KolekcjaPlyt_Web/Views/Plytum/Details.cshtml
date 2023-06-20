@@ -1,0 +1,53 @@
+﻿@model IEnumerable<KolekcjaPlyt_Web.Models.Utwor>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tytul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Komentarz)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GatunekMuzyczny)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPlytaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdWykonawcaNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tytul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Komentarz)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GatunekMuzyczny)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPlytaNavigation.IdPlyta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdWykonawcaNavigation.IdWykonawca)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdUtwor">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdUtwor">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdUtwor">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

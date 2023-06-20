@@ -1,39 +1,29 @@
-﻿using KolekcjaPlyt_Web.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KolekcjaPlyt_Web.Controllers
 {
-    public class PlytumController : Controller
+    public class UtworController1 : Controller
     {
-        private KolekcjaPlytContext db = new KolekcjaPlytContext();
-        // GET: PlytumController
+        // GET: UtworController1
         public ActionResult Index()
         {
-            return View(db.Plyta.ToList());
+            return View();
         }
 
-        // GET: PlytumController/Details/5
+        // GET: UtworController1/Details/5
         public ActionResult Details(int id)
         {
-            var utwory = db.Utwors.ToList();
-            
-            var wyszukaneUtwory = utwory.FindAll(u => u.IdPlyta == id);
-            var utworList = new List<Utwor> { };
-
-            foreach (var item in wyszukaneUtwory) {
-                utworList.Add(item);
-                }
-            return View(utworList);
+            return View();
         }
 
-        // GET: PlytumController/Create
+        // GET: UtworController1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PlytumController/Create
+        // POST: UtworController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -48,13 +38,13 @@ namespace KolekcjaPlyt_Web.Controllers
             }
         }
 
-        // GET: PlytumController/Edit/5
+        // GET: UtworController1/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PlytumController/Edit/5
+        // POST: UtworController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -69,13 +59,13 @@ namespace KolekcjaPlyt_Web.Controllers
             }
         }
 
-        // GET: PlytumController/Delete/5
+        // GET: UtworController1/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PlytumController/Delete/5
+        // POST: UtworController1/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
