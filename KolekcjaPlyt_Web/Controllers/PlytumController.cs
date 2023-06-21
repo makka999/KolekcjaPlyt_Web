@@ -38,14 +38,38 @@ namespace KolekcjaPlyt_Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            try
+            //var formContent = collection.ToList();
+            var dataNabycia = collection["DataNabycia"];
+            var cena = collection["Cena"];
+            var nazwa = collection["Nazwa"];
+            var rodzajPlyty = collection["RodzajPlyty"];
+
+
+            var addNabycie = new Nabycie
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+                Cena = Convert.ToDecimal(cena),
+                DataNabycia = Convert.ToDateTime(dataNabycia)
+            };
+
+            db.Nabycies.Add(addNabycie);
+            db.SaveChanges();
+
+            var addPlyta = new Plytum
             {
-                return View();
-            }
+                Nazwa = nazwa,
+                RodzajPlyty = rodzajPlyty,
+                Komentarz = null,
+                StatusPosiadania = "Add by Web",
+                IdNabycie = addNabycie.IdNabycie
+
+            };
+
+            db.Plyta.Add(addPlyta);
+            db.SaveChanges();
+
+
+            return View(Index);
+
         }
 
         // GET: PlytumController/Edit/5
