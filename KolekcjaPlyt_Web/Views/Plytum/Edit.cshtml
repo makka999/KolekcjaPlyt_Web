@@ -1,0 +1,40 @@
+﻿@model KolekcjaPlyt_Web.Models.Plytum
+
+<h4>Plytum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdPlyta" />
+            <div class="form-group">
+                <label asp-for="Nazwa" class="control-label"></label>
+                <input asp-for="Nazwa" class="form-control" />
+                <span asp-validation-for="Nazwa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Komentarz" class="control-label"></label>
+                <input asp-for="Komentarz" class="form-control" />
+                <span asp-validation-for="Komentarz" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RodzajPlyty" class="control-label"></label>
+                <input asp-for="RodzajPlyty" class="form-control" />
+                <span asp-validation-for="RodzajPlyty" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="StatusPosiadania" />
+            <input type="hidden" asp-for="IdNabycie" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

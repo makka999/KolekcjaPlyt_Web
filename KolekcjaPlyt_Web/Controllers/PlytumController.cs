@@ -68,14 +68,15 @@ namespace KolekcjaPlyt_Web.Controllers
             db.SaveChanges();
 
 
-            return View(Index);
+            return View("Index");
 
         }
 
         // GET: PlytumController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            
+            return View(db.Plyta.Find(id));
         }
 
         // POST: PlytumController/Edit/5
@@ -83,14 +84,22 @@ namespace KolekcjaPlyt_Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+
+                var nazwa = collection["Nazwa"];
+                var rodzajPlyty = collection["RodzajPlyty"];
+                var komentarz = collection["Komentarz"];
+                Plytum modPlyta = db.Plyta.Find(id);
+
+                modPlyta.Komentarz = komentarz;
+            modPlyta.StatusPosiadania = "Mod by Web";
+            modPlyta.Nazwa = nazwa;
+            modPlyta.RodzajPlyty = rodzajPlyty;
+
+                db.Plyta.Update(modPlyta);
+                db.SaveChanges();
+
+            return View("Index");
+
         }
 
         // GET: PlytumController/Delete/5
