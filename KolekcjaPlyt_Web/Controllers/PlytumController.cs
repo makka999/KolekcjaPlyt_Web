@@ -68,7 +68,7 @@ namespace KolekcjaPlyt_Web.Controllers
             db.SaveChanges();
 
 
-            return View("Index");
+            return View();
 
         }
 
@@ -98,7 +98,7 @@ namespace KolekcjaPlyt_Web.Controllers
                 db.Plyta.Update(modPlyta);
                 db.SaveChanges();
 
-            return View("Index");
+            return View();
 
         }
 
