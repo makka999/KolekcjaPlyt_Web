@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 
 namespace KolekcjaPlyt_Web.Models;
@@ -37,6 +38,9 @@ public partial class KolekcjaPlytContext : DbContext
     {
         modelBuilder.Entity<Czlonek>(entity =>
         {
+            modelBuilder.Entity<Plytum>()
+    .ToTable(tb => tb.HasTrigger("WyzwalaczDeletePlyta"));
+
             entity.HasKey(e => e.IdCzlonek).HasName("PK__Czlonek__F58F4A4DF3387811");
 
             entity.ToTable("Czlonek");
@@ -184,6 +188,7 @@ public partial class KolekcjaPlytContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
