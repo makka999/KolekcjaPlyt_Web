@@ -96,22 +96,28 @@ namespace KolekcjaPlyt_Web.Controllers
         // GET: PlytumController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Plytum plyta = db.Plyta.Find(id);
+            return View(plyta);
         }
 
         // POST: PlytumController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirm(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            //try
+            //{
+                Plytum plyta = db.Plyta.Find(id);
+                db.Plyta.Remove(plyta);
+                db.SaveChanges();
+
+
+                return RedirectToAction("Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
     }
 }
