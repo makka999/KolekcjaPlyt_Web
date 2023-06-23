@@ -24,7 +24,8 @@ namespace KolekcjaPlyt_Web.Controllers
             foreach (var item in wyszukaneUtwory) {
                 utworList.Add(item);
                 }
-            return View(utworList);
+            return RedirectToAction("Index", "UtworController1", new { id = id });
+            //return View(utworList);
         }
 
         // GET: PlytumController/Create

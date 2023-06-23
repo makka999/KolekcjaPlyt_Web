@@ -1,20 +1,45 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using KolekcjaPlyt_Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KolekcjaPlyt_Web.Controllers
 {
     public class UtworController1 : Controller
     {
+        private KolekcjaPlytContext db = new KolekcjaPlytContext();
         // GET: UtworController1
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var utwory = db.Utwors.ToList();
+
+            var wyszukaneUtwory = utwory.FindAll(u => u.IdPlyta == id);
+            var utworList = new List<Utwor> { };
+
+            foreach (var item in wyszukaneUtwory)
+            {
+                utworList.Add(item);
+            }
+
+
+            return View(utworList);
         }
 
         // GET: UtworController1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+            var utwory = db.Utwors.ToList();
+
+            var wyszukaneUtwory = utwory.FindAll(u => u.IdPlyta == id);
+            var utworList = new List<Utwor> { };
+
+            foreach (var item in wyszukaneUtwory)
+            {
+                utworList.Add(item);
+            }
+
+
+            return View(utworList);
         }
 
         // GET: UtworController1/Create
